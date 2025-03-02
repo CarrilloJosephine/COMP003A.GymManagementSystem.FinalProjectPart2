@@ -64,6 +64,38 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
                 members.Add(new Member(name, id));
                 Console.WriteLine("Member added successfully");
             }
+            /// <summary>'
+            /// show all the workout classes
+            /// </summary>
+            void ViewWorkoutClass() 
+            {
+                if (workoutClasses.Count == 0)
+                {
+                    Console.WriteLine("No workout class");
+                    return;
+                }
+                Console.WriteLine("Workout class: ");
+                for (int i = 0; i < workoutClasses.Count; i++)
+                {
+                    Console.WriteLine("");
+                }
+            }
+            void AddWorkoutClass ()
+            {
+                Console.WriteLine("Enter class name: ");
+                string className = Console.ReadLine();
+                Console.WriteLine("Enter class time: ");
+                string classTime = Console.ReadLine();
+                Console.WriteLine("Enter Trainer Name: ");
+                string trainerName = Console.ReadLine();
+
+                if (!string.IsNullOrEmpty(trainerName) || string.IsNullOrWhiteSpace(classTime) || string.IsNullOrWhiteSpace(trainerName))
+                {
+                    Console.WriteLine("Invaild input vant be empty");
+                    return;
+                }
+            }
         }
+        
     }
 }
