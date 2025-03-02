@@ -1,9 +1,10 @@
- /*
+/*
 // Author: Josephine Carrillo
 // Course: COMP-003A
 // Faculty: Jonathan Cruz
 // Purpose Gym Manament system Final project part 2
 */
+using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 
 namespace COMP003A.GymManagementSystem.FinalProjectPart2
@@ -122,5 +123,31 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
 
         }
         
+    }
+    class GymManagement
+    {
+        public void MainMenu()
+        {
+            Console.WriteLine("Gym Managemnt System");
+            Console.WriteLine("1. Add a new member");
+            Console.WriteLine("2. View workout class");
+            Console.WriteLine("3. Add workout class");
+            Console.WriteLine("4. Delete workout class");
+            Console.WriteLine("5. Exit gym management");
+
+            if 
+            {
+                Case 1: 
+                    AddNewMember();
+                Case 2: 
+                    ViewWorkoutClass();
+                Case 3:
+                    AddWorkoutClass();
+                Case 4:
+                    DeleteWorkoutClass();
+                Case 5:
+                    ExitProgram();
+            }
+        }
     }
 }
