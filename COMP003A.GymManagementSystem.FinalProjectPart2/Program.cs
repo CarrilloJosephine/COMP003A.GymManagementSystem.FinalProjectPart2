@@ -49,7 +49,7 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
             /// <summary>
             /// add new member to the gym
             /// </summary>
-            void AddNewMember()
+            public void AddNewMember()
             {
                 Console.WriteLine("Enter Full Name");
                 string name = Console.ReadLine();
@@ -67,7 +67,7 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
             /// <summary>'
             /// show all the workout classes
             /// </summary>
-            void ViewWorkoutClass() 
+            public void ViewWorkoutClass() 
             {
                 if (workoutClasses.Count == 0)
                 {
@@ -80,7 +80,7 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
                     Console.WriteLine("");
                 }
             }
-            void AddWorkoutClass ()
+            public void AddWorkoutClass ()
             {
                 Console.WriteLine("Enter class name: ");
                 string className = Console.ReadLine();
@@ -89,12 +89,24 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
                 Console.WriteLine("Enter Trainer Name: ");
                 string trainerName = Console.ReadLine();
 
-                if (!string.IsNullOrEmpty(trainerName) || string.IsNullOrWhiteSpace(classTime) || string.IsNullOrWhiteSpace(trainerName))
+                if (string.IsNullOrEmpty(trainerName) || string.IsNullOrWhiteSpace(classTime) || string.IsNullOrWhiteSpace(trainerName))
                 {
                     Console.WriteLine("Invaild input vant be empty");
                     return;
                 }
+
+                workoutClasses.Add(new WorkoutClass(className, classTime, trainerName));
+                Console.WriteLine("Workout class added successfully");
             }
+            public void ViewWorkoutClasses()
+            { 
+
+            }
+            public void DeleteWorkoutClass()
+            {
+
+            }
+
         }
         
     }
