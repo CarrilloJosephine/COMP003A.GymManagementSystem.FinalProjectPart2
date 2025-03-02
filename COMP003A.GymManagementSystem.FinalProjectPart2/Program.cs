@@ -21,3 +21,18 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
             MembershipID = id;
         }
     }
+    /// <summary>
+/// shows a workout class with the details like the name, time, and trainer 
+/// </summary>
+class WorkoutClass
+{
+public string ClassName { get; set; }
+public string ClassTime { get; set; }
+public string TrainerName { get; set; }
+public WorkoutClass ( string className, string classTime, string trainerName )
+    {
+        ClassName = className;
+        ClassTime = classTime;
+        TrainerName = trainerName;
+    }
+}
