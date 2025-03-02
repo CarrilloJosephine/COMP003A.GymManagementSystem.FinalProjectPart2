@@ -1,10 +1,23 @@
-﻿namespace COMP003A.GymManagementSystem.FinalProjectPart2
+/*
+// Author: Josephine Carrillo
+// Course: COMP-003A
+// Faculty: Jonathan Cruz
+// Purpose Gym Manament system Final project part 2
+*/
+using System.Diagnostics.CodeAnalysis;
+
+namespace COMP003A.GymManagementSystem.FinalProjectPart2
 {
-    internal class Program
+    /// <summary>
+    /// Shows a gym member with there full name and id number 
+    /// </summary>
+    class Member 
     {
-        static void Main(string[] args)
+        public string FullName { get; set; }
+        public string MembershipID { get; set; }
+        public Member ( string name, string id); 
         {
-            Console.WriteLine("Hello, World!");
+            FullName = name;
+            MembershipID = id;
         }
     }
-}
