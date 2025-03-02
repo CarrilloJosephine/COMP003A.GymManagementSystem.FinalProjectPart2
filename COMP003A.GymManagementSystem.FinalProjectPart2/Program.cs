@@ -57,7 +57,7 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
                 Console.WriteLine("Enter MemberShip ID");
                 string id = Console.ReadLine();
 
-                if (string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(id))
+                if (string.IsNullOrEmpty(name) & string.IsNullOrWhiteSpace(id))
                 {
                     Console.WriteLine("Invalid input name and id cant be empty");
                     return;
@@ -128,25 +128,36 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
     {
         public void MainMenu()
         {
-            Console.WriteLine("Gym Managemnt System");
-            Console.WriteLine("1. Add a new member");
-            Console.WriteLine("2. View workout class");
-            Console.WriteLine("3. Add workout class");
-            Console.WriteLine("4. Delete workout class");
-            Console.WriteLine("5. Exit gym management");
-
-            if 
+            while (true) 
             {
-                Case 1: 
-                    AddNewMember();
-                Case 2: 
-                    ViewWorkoutClass();
-                Case 3:
-                    AddWorkoutClass();
-                Case 4:
-                    DeleteWorkoutClass();
-                Case 5:
-                    ExitProgram();
+                Console.WriteLine("Gym Managemnt System");
+                Console.WriteLine("1. Add a new member");
+                Console.WriteLine("2. View workout class");
+                Console.WriteLine("3. Add workout class");
+                Console.WriteLine("4. Delete workout class");
+                Console.WriteLine("5. Exit gym management");
+
+            if (int.TryParse(Console.ReadLine(), out int Choice))
+            {
+                    switch (Choice)
+                    {
+                    Case 1: 
+                        AddNewMember();
+                    break;
+                    Case 2: 
+                        ViewWorkoutClass();
+                    break;
+                    Case 3:
+                        AddWorkoutClass();  
+                    break;
+                    Case 4:
+                        DeleteWorkoutClass();   
+                    break;
+                    Case 5:
+                        ExitProgram();
+                    break;
+                    }
+               
             }
         }
     }
