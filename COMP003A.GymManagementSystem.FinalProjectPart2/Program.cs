@@ -21,30 +21,47 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
             MembershipID = id;
         }
     }
+
     /// <summary>
-/// shows a workout class with the details like the name, time, and trainer 
-/// </summary>
-class WorkoutClass
-{
-public string ClassName { get; set; }
-public string ClassTime { get; set; }
-public string TrainerName { get; set; }
-public WorkoutClass ( string className, string classTime, string trainerName )
+    /// shows a workout class with the details like the name, time, and trainer 
+    /// </summary>
+    class WorkoutClass
     {
-        ClassName = className;
-        ClassTime = classTime;
-        TrainerName = trainerName;
+    public string ClassName { get; set; }
+    public string ClassTime { get; set; }
+    public string TrainerName { get; set; }
+    public WorkoutClass ( string className, string classTime, string trainerName )
+        {
+            ClassName = className;
+            ClassTime = classTime;
+            TrainerName = trainerName;
+        }
     }
-}
-     class Program 
- {
- static List<Member> members;
- static List<WorkoutClass> workoutClasses;
+    class Program 
+    {
+    static List<Member> members;
+    static List<WorkoutClass> workoutClasses;
 
- public Program()
- {
-     members = new List<Member> ();
-     workoutClasses = new List<WorkoutClass> ();
- }
+    public Program()
+    {
+        members = new List<Member> ();
+        workoutClasses = new List<WorkoutClass> ();
+    }
+    /// <summary>
+    /// add new member to the gym
+    /// </summary>
+    void AddNewMember()
+    {
+        Console.WriteLine("Enter Full Name");
+        string name = Console.ReadLine ();
+        Console.WriteLine("Enter MemberShip ID");
+        string id = Console.ReadLine ();
 
- }
+        if (string .IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(id))
+        {
+            Console.WriteLine("Invalid input name and id cant be empty");
+            return;
+        }
+    }
+
+    }
