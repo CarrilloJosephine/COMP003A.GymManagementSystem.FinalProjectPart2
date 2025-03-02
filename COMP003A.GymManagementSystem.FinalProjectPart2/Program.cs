@@ -1,4 +1,3 @@
-
 /*
 // Author: Josephine Carrillo
 // Course: COMP-003A
@@ -95,28 +94,26 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
             public void DeleteWorkoutClass()
             {
             ViewWorkoutClass(); //Shows all the workout class if there is any
-            if (WorkoutClass.Count == 0)
-            {
-                Console.WriteLine("No workout classes");
-                return;
+            if (workoutClass.Count == 0)
+            return;
+
+            Console.WriteLine("Enter the name of the class you want to delete: ");
+            string className = Console.ReadLine();
+
+            var WorkoutClass = workoutClass[0];
             }
-            Console.WriteLine("Enter class name you want to delete: ");
-            string workoutClass = Console.ReadLine();
-            if (workoutClass == null)
-            {
-                Console.WriteLine("Class name not found");
-                return;
-            }
-        }
+        
 
     }
         
-    }
+    /// The main class program that has the menu options 
     class program
     {
         static void Main()
         {
-            while (true) 
+            GymManagement gymManagement = new GymManagement();
+            bool running = true;
+            while (running)
             {
                 Console.WriteLine("Gym Managemnt System");
                 Console.WriteLine("1. Add a new member");
@@ -124,8 +121,24 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
                 Console.WriteLine("3. Add workout class");
                 Console.WriteLine("4. Delete workout class");
                 Console.WriteLine("5. Exit gym management");
+                Console.WriteLine("Pick a number 1-5");
+                string choice = Console.ReadLine();
 
-            
+                switch (choice)
+                {
+                    case "1":
+                        gymManagement.AddNewMember();
+                        break;
+                    case "2":
+                        gymManagement.ViewWorkoutClass();
+                        break;
+                    case "3":
+                        gymManagement.AddWorkoutClass();
+                        break;
+                }
+
+            }
         }
     }
+
 }
