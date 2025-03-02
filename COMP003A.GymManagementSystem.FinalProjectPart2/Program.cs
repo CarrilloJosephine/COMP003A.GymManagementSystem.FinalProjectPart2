@@ -36,3 +36,15 @@ public WorkoutClass ( string className, string classTime, string trainerName )
         TrainerName = trainerName;
     }
 }
+     class Program 
+ {
+ static List<Member> members;
+ static List<WorkoutClass> workoutClasses;
+
+ public Program()
+ {
+     members = new List<Member> ();
+     workoutClasses = new List<WorkoutClass> ();
+ }
+
+ }
