@@ -1,4 +1,4 @@
-/*
+ /*
 // Author: Josephine Carrillo
 // Course: COMP-003A
 // Faculty: Jonathan Cruz
@@ -100,11 +100,24 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
             }
             public void ViewWorkoutClasses()
             { 
+                if (workoutClasses.Count == 0)
+                {
+                    Console.WriteLine("No workout classes");
+                    return;
+                }
 
             }
             public void DeleteWorkoutClass()
             {
-
+                ViewWorkoutClass();
+                if (workoutClasses.Count == 0) 
+                    return;
+                Console.WriteLine("Enter class number to remove: ");
+                if (int.TryParse(Console.ReadLine(), out int id))
+                { 
+                    workoutClass.RemoveAt(id);
+                    Console.WriteLine("class removed");
+                }
             }
 
         }
