@@ -1,3 +1,4 @@
+
 /*
 // Author: Josephine Carrillo
 // Course: COMP-003A
@@ -71,6 +72,7 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
                     Console.WriteLine("{WorkoutClass.ClassName} - {WorkoutClass.ClassTime} - {WorkoutClass.TrainerName}");
                 }
             }
+            /// to add more workout classes
             public void AddWorkoutClass ()
             {
                 Console.WriteLine("Enter class name: ");
@@ -86,30 +88,26 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
                     return;
                 }
 
-                workoutClass.Add(new WorkoutClass(className, classTime, trainerName));
+                workoutClass.Add(new WorkoutClass(className, classTime, trainerName)); // gets all info and adds class
                 Console.WriteLine("Workout class added successfully");
             }
-            public void ViewWorkoutClasses()
-            { 
-                if (workoutClass.Count == 0)
-                {
-                    Console.WriteLine("No workout classes");
-                    return;
-                }
-
-            }
+            /// delete workout class
             public void DeleteWorkoutClass()
             {
-                ViewWorkoutClass();
-                if (workoutClass.Count == 0) 
-                    return;
-                Console.WriteLine("Enter class number to remove: ");
-                if (int.TryParse(Console.ReadLine(), out int id))
-                { 
-                    workoutClass.RemoveAt(id);
-                    Console.WriteLine("class removed");
-                }
+            ViewWorkoutClass(); //Shows all the workout class if there is any
+            if (WorkoutClass.Count == 0)
+            {
+                Console.WriteLine("No workout classes");
+                return;
             }
+            Console.WriteLine("Enter class name you want to delete: ");
+            string workoutClass = Console.ReadLine();
+            if (workoutClass == null)
+            {
+                Console.WriteLine("Class name not found");
+                return;
+            }
+        }
 
     }
         
