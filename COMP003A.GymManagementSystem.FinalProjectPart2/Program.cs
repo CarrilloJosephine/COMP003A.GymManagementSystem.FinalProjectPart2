@@ -6,6 +6,7 @@
 */
 
 using System.Collections;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 namespace COMP003A.GymManagementSystem.FinalProjectPart2
@@ -13,21 +14,26 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
     /// Class saves meber info like full name and id number 
     class Member
     {
-        public string FullName { get; set; }
-        public string ID { get; set; }
+        public string FullName { get; set; }  // full Name of new gym member
+        public string ID { get; set; }       // unique id for each new member 
+        public List<WorkoutClass> WorkoutClasses { get; set; } // list of workout classes the members are in 
+
+        /// Constructor  
         public Member(string name, string id)
         {
             FullName = name;
             ID = id;
+            WorkoutClasses = new List<WorkoutClass>();     // start workoutclass list
         }
     }
 
     /// Class saves workout class info like the name, time, and trainer 
     class WorkoutClass
     {
-         public string ClassName { get; set; }
-         public string ClassTime { get; set; }
-         public string TrainerName { get; set; }
+         public string ClassName { get; set; }    // Name of workout class
+         public string ClassTime { get; set; }    // The time of the workout class
+         public string TrainerName { get; set; }  // The name of the trainer for the class
+        /// constructor to ask for info of workoutclass
          public WorkoutClass(string className, string classTime, string trainerName)
          {
             ClassName = className;
@@ -35,44 +41,62 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
             TrainerName = trainerName;
          }
     }
-    /// Class incharge of what you can add,view,delete 
+    /// Class incharge of gym member and workout classes 
     class GymManagement
     {
         private List<Member> members = new List<Member>(); // Saves all the Members
-        private List<WorkoutClass> workoutClass = new List<WorkoutClass>(); // Saves all workout classes
 
             /// add new member to the gym
             public void AddNewMember()
             {
-                Console.WriteLine("Enter Full Name");
-                string name = Console.ReadLine();
-                Console.WriteLine("Enter MemberShip ID");
+                try
+                {
+                    Console.WriteLine("Enter Full Name");
+                    string name = Console.ReadLine();
+                    Console.WriteLine("Enter MemberShip ID");
+                    string id = Console.ReadLine();
+                    
+                    /// input validation
+                    if (string.IsNullOrEmpty(name) & string.IsNullOrEmpty(id))
+                    {
+                        Console.WriteLine("Invalid input name and id cant be empty");
+                        return;
+                    }
+                    
+                /// check if id already exsist 
+                bool memberExists = false;
+                foreach (Member member in members)
+                {
+                    if (member.ID == id)
+                    {
+                        memberExists = true;
+                        break;
+                    }
+                }
+                if (memberExists) 
+                {
+                    Console.WriteLine("A member already has this ID pick a different ID number");
+                    return;
+                }
+                    /// add new member to list 
+                    members.Add(new Member(name, id));
+                Console.WriteLine("New member added");
+                }
+                catch 
+                { 
+                    Console.WriteLine("Invaild input");
+                }
+            }
+            /// Method show all the workout classes
+            public void ViewWorkoutClass()
+            {
+                Console.Write("Enter Member ID: ");
                 string id = Console.ReadLine();
 
-                if (string.IsNullOrEmpty(name) & string.IsNullOrEmpty(id))
-                {
-                    Console.WriteLine("Invalid input name and id cant be empty");
-                    return;
-                }
-                members.Add(new Member(name, id)); // adds the new member to the list of members
-                Console.WriteLine("Member added successfully");
+                
             }
-            /// show all the workout classes
-            public void ViewWorkoutClass() 
-            {
-                if (workoutClass.Count == 0)   // check if the member has any workoutClasses
-                {
-                    Console.WriteLine("No workout class");
-                    return;
-                }
-                Console.WriteLine("Workout class: ");
-                foreach (var WorkoutClass in workoutClass)
-                {
-                    Console.WriteLine("{WorkoutClass.ClassName} - {WorkoutClass.ClassTime} - {WorkoutClass.TrainerName}");
-                }
-            }
-            /// to add more workout classes to member
-            public void AddWorkoutClass ()
+        /// to add more workout classes to member
+        public void AddWorkoutClass ()
             {
                 Console.WriteLine("Enter class name: ");
                 string className = Console.ReadLine();
