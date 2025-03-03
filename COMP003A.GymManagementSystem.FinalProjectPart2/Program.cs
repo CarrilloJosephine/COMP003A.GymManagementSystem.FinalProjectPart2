@@ -1,4 +1,3 @@
-/*
 // Author: Josephine Carrillo
 // Course: COMP-003A
 // Faculty: Jonathan Cruz
@@ -46,23 +45,23 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
     {
         private List<Member> members = new List<Member>(); // Saves all the Members
 
-            /// add new member to the gym
-            public void AddNewMember()
+        /// add new member to the gym
+        public void AddNewMember()
+        {
+            try
             {
-                try
+                Console.WriteLine("Enter Full Name");
+                string name = Console.ReadLine();
+                Console.WriteLine("Enter MemberShip ID");
+                string id = Console.ReadLine();
+
+                /// input validation
+                if (string.IsNullOrEmpty(name) & string.IsNullOrEmpty(id))
                 {
-                    Console.WriteLine("Enter Full Name");
-                    string name = Console.ReadLine();
-                    Console.WriteLine("Enter MemberShip ID");
-                    string id = Console.ReadLine();
-                    
-                    /// input validation
-                    if (string.IsNullOrEmpty(name) & string.IsNullOrEmpty(id))
-                    {
-                        Console.WriteLine("Invalid input name and id cant be empty");
-                        return;
-                    }
-                    
+                    Console.WriteLine("Invalid input name and id cant be empty");
+                    return;
+                }
+
                 /// check if id already exsist 
                 bool memberExists = false;
                 foreach (Member member in members)
@@ -73,20 +72,20 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
                         break;
                     }
                 }
-                if (memberExists) 
+                if (memberExists)
                 {
                     Console.WriteLine("A member already has this ID pick a different ID number");
                     return;
                 }
-                    /// add new member to list 
-                    members.Add(new Member(name, id));
+                /// add new member to list 
+                members.Add(new Member(name, id));
                 Console.WriteLine("New member added");
-                }
-                catch 
-                { 
-                    Console.WriteLine("Invaild input");
-                }
             }
+            catch
+            {
+                Console.WriteLine("Invaild input");
+            }
+        }
         /// Method show all the workout classes
         public void ViewWorkoutClass()
         {
@@ -152,6 +151,46 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
             Console.WriteLine("Enter the name of the trainer you want");
             string classTrainer = Console.ReadLine();
 
+            if (string.IsNullOrEmpty(className) & string.IsNullOrEmpty(classTime) & string.IsNullOrEmpty(classTrainer))
+            {
+                Console.WriteLine("invaild input class name, class time, or trainer cant be empty");
+                return;
+            }
+
+            /// add the workout class to the specific member 
+            findmember.WorkoutClasses.Add(new WorkoutClass(className, classTime, classTrainer));
+            Console.WriteLine("workout class added to the member");
+        }
+
+        /// Method to delete workout class from the member
+        public void DeleteWorkoutClass()
+        {
+            Console.WriteLine("enter your id number");
+            string id = Console.ReadLine();
+
+            /// Find the member with there id 
+            Member findmember = null;
+            foreach (Member member in members)
+            {
+                if (member.ID == id)
+                {
+                    findmember = member;
+                    break;
+                }
+            }
+            if (findmember == null)
+            {
+                Console.WriteLine("member is not found check if id entered correctly or sign up");
+                return;
+            }
+            if (findmember.WorkoutClasses.Count == 0) 
+            {
+                Console.WriteLine("this member has no workout classes");
+                return;
+            }
+            /// show the classes the member has 
+            Console.WriteLine("The classes the member has: ");
+            for (int i = 0;) ;
         }
     }
         
@@ -171,7 +210,7 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
                 Console.WriteLine("4. Delete workout class");
                 Console.WriteLine("5. Exit gym management");
                 Console.WriteLine("Pick a number 1-5");
-                string choice = Console.ReadLine();  // Reads teh numebr you input
+                string choice = Console.ReadLine();  // Reads the numebr you input
 
                 switch (choice)  // Handles what number you input
                 {
