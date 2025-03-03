@@ -87,47 +87,72 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
                     Console.WriteLine("Invaild input");
                 }
             }
-            /// Method show all the workout classes
-            public void ViewWorkoutClass()
-            {
-                Console.Write("Enter Member ID: ");
-                string id = Console.ReadLine();
+        /// Method show all the workout classes
+        public void ViewWorkoutClass()
+        {
+            Console.Write("Enter Member ID: ");
+            string id = Console.ReadLine();
 
-                
-            }
-        /// to add more workout classes to member
-        public void AddWorkoutClass ()
+            /// Find the member with the ID
+            Member findMember = null;
+            foreach (Member member in members)
             {
-                Console.WriteLine("Enter class name: ");
-                string className = Console.ReadLine();
-                Console.WriteLine("Enter class time: ");
-                string classTime = Console.ReadLine();
-                Console.WriteLine("Enter Trainer Name: ");
-                string trainerName = Console.ReadLine();
-
-                if (string.IsNullOrEmpty(trainerName) & string.IsNullOrEmpty(classTime) & string.IsNullOrEmpty(trainerName))
+                if (member.ID == id)
                 {
-                    Console.WriteLine("Invaild input cant be empty");
-                    return;
+                    findMember = member;
+                    break;
                 }
-                /// Creates a new workout class for the mebers and adds it to there workoutClasses
-                workoutClass.Add(new WorkoutClass(className, classTime, trainerName)); // gets all info and adds class
-                Console.WriteLine("Workout class added successfully");
+
             }
-            /// delete workout class
-            public void DeleteWorkoutClass()
+
+            /// show workout classes 
+            if (findMember.WorkoutClasses.Count == 0)
             {
-            ViewWorkoutClass(); //Shows all the workout class if there is any
-            if (workoutClass.Count == 0)
-            return;
-
-            Console.WriteLine("Enter the name of the class you want to delete: ");
-            string className = Console.ReadLine();
-
-            var WorkoutClass = workoutClass[0];
+                Console.WriteLine($"{findMember.FullName} has no workout class yet add some");
             }
-        
+            else
+            {
+                Console.WriteLine($"These are {findMember.FullName} workout classes:");
+                foreach (var workout in findMember.WorkoutClasses)
+                {
+                    Console.WriteLine($"Class name is {workout.ClassName} is at {workout.ClassTime}, and your trainer is {workout.TrainerName}");
+                }
+            }
+        }
+        /// to add more workout classes to member
+        public void AddWorkoutClass()
+        {
+            Console.WriteLine("Enter your Id number: ");
+            string id = Console.ReadLine();
 
+
+            /// Find the memebr with there ID 
+            Member findmember = null;
+            foreach (Member member in members)
+            {
+                if (member.ID == id)
+                {
+                    findmember = member;
+                    break;
+                }
+
+            }
+
+            if (findmember == null)
+            {
+                Console.WriteLine("member is not found check if id entered correctly or sign up");
+                return;
+            }
+
+            /// Enter the info for the classes
+            Console.WriteLine("Enter the name of the class: ");
+            string className = Console.ReadLine();
+            Console.WriteLine("Enter the time you want the class: ");
+            string classTime = Console.ReadLine();
+            Console.WriteLine("Enter the name of the trainer you want");
+            string classTrainer = Console.ReadLine();
+
+        }
     }
         
     /// The main class program that has the menu options 
