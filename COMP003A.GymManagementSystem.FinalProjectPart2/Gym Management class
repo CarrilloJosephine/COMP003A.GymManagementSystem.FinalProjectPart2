@@ -154,16 +154,22 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
                 Console.WriteLine("this member has no workout classes");
                 return;
             }
-            /// show the classes the member has 
-            Console.WriteLine("The classes the member has: ");
-            int index = 1;                                           
-            foreach (var workout in findmember.WorkoutClasses) ;          // loops through the classes 
+            /// enter class to remove 
+            Console.WriteLine("Enter the class you want to delete: ");
+            string classNameToDelete = Console.ReadLine();
+
+            /// find class and remove it 
+            WorkoutClass classToRemove = null;
+            foreach (var workoutClass in findmember.WorkoutClasses)
             {
-                Console.WriteLine($"{index} {WorkoutClass}"};      //show class list 
-                index++;
+                if (workoutClass.ClassName == classNameToDelete) // checks if the name matches one of the classes on the members class list
+                {
+                    classToRemove = workoutClass;
+                    break;
+                }
             }
+            
         }
     }
 
 }
-
