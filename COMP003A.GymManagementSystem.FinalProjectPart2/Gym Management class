@@ -1,1 +1,169 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace COMP003A.GymManagementSystem.FinalProjectPart2
+{
+    /// Class incharge of gym member and workout classes 
+    class GymManagement
+    {
+        private List<Member> members = new List<Member>(); // Saves all the Members
+
+        /// add new member to the gym
+        public void AddNewMember()
+        {
+            try
+            {
+                Console.WriteLine("Enter Full Name");
+                string name = Console.ReadLine();          // read the member name
+                Console.WriteLine("Enter MemberShip ID");
+                string id = Console.ReadLine();            // read the member id number 
+
+                /// input validation
+                if (string.IsNullOrEmpty(name) & string.IsNullOrEmpty(id))
+                {
+                    Console.WriteLine("Invalid input name and id cant be empty");
+                    return; // stops when invaild and empty 
+                }
+
+                /// check if id already exsist 
+                bool memberExists = false;
+                foreach (Member member in members)  // loops in member list 
+                {
+                    if (member.ID == id)           // checks if id exist 
+                    {
+                        memberExists = true;
+                        break;                   // stops if the id matches another member id 
+                    }
+                }
+                if (memberExists)
+                {
+                    Console.WriteLine("A member already has this ID pick a different ID number");
+                    return;
+                }
+                /// add new member to list 
+                members.Add(new Member(name, id));     // adds new member to the list
+                Console.WriteLine("New member added"); 
+            }
+            catch
+            {
+                Console.WriteLine("Invaild input");
+            }
+        }
+        /// Method show all the workout classes
+        public void ViewWorkoutClass()
+        {
+            Console.Write("Enter Member ID: ");
+            string id = Console.ReadLine();
+
+            /// Find the member with the ID
+            Member findMember = null;
+            foreach (Member member in members)  // loops through the member list 
+            {
+                if (member.ID == id)             // checks if id matches one of the members
+                {
+                    findMember = member;
+                    break;
+                }
+
+            }
+
+            /// show workout classes 
+            if (findMember.WorkoutClasses.Count == 0)        // checks if the member has workout classes
+            {
+                Console.WriteLine($"{findMember.FullName} has no workout class yet add some");
+            }
+            else
+            {
+                Console.WriteLine($"These are {findMember.FullName} workout classes:");
+                foreach (var workout in findMember.WorkoutClasses)            // loops through the workout classes
+                {
+                    Console.WriteLine($"Class name is {workout.ClassName} is at {workout.ClassTime}, and your trainer is {workout.TrainerName}");
+                }
+            }
+        }
+        /// to add more workout classes to member
+        public void AddWorkoutClass()
+        {
+            Console.WriteLine("Enter your Id number: ");
+            string id = Console.ReadLine();
+
+
+            /// Find the memebr with there ID 
+            Member findmember = null;
+            foreach (Member member in members)
+            {
+                if (member.ID == id)               // loops through the member list 
+                {
+                    findmember = member;         // checks if id matches one of the members
+                    break;
+                }
+
+            }
+
+            if (findmember == null)             // if member isnt found 
+            {
+                Console.WriteLine("member is not found check if id entered correctly or sign up");
+                return;
+            }
+
+            /// Enter the info for the classes
+            Console.WriteLine("Enter the name of the class: ");
+            string className = Console.ReadLine();
+            Console.WriteLine("Enter the time you want the class: ");
+            string classTime = Console.ReadLine();
+            Console.WriteLine("Enter the name of the trainer you want");
+            string classTrainer = Console.ReadLine();
+
+            if (string.IsNullOrEmpty(className) & string.IsNullOrEmpty(classTime) & string.IsNullOrEmpty(classTrainer))
+            {
+                Console.WriteLine("invaild input class name, class time, or trainer cant be empty");
+                return;
+            }
+
+            /// add the workout class to the specific member 
+            findmember.WorkoutClasses.Add(new WorkoutClass(className, classTime, classTrainer));
+            Console.WriteLine("workout class added to the member");
+        }
+
+        /// Method to delete workout class from the member
+        public void DeleteWorkoutClass()
+        {
+            Console.WriteLine("enter your id number");
+            string id = Console.ReadLine();
+
+            /// Find the member with there id 
+            Member findmember = null;
+            foreach (Member member in members)
+            {
+                if (member.ID == id)      // loops through the member list 
+                {
+                    findmember = member;   // checks if id matches one of the members
+                    break;
+                }
+            }
+            if (findmember == null)    // if member isnt found 
+            {
+                Console.WriteLine("member is not found check if id entered correctly or sign up");
+                return;
+            }
+            if (findmember.WorkoutClasses.Count == 0)   // check if member has classes 
+            {
+                Console.WriteLine("this member has no workout classes");
+                return;
+            }
+            /// show the classes the member has 
+            Console.WriteLine("The classes the member has: ");
+            int index = 1;                                           
+            foreach (var workout in findmember.WorkoutClasses) ;          // loops through the classes 
+            {
+                Console.WriteLine($"{index} {WorkoutClass}"};      //show class list 
+                index++;
+            }
+        }
+    }
+
+}
 
