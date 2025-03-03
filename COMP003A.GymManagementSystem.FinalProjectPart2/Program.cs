@@ -60,7 +60,7 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
             /// show all the workout classes
             public void ViewWorkoutClass() 
             {
-                if (workoutClass.Count == 0)
+                if (workoutClass.Count == 0)   // check if the member has any workoutClasses
                 {
                     Console.WriteLine("No workout class");
                     return;
@@ -71,7 +71,7 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
                     Console.WriteLine("{WorkoutClass.ClassName} - {WorkoutClass.ClassTime} - {WorkoutClass.TrainerName}");
                 }
             }
-            /// to add more workout classes
+            /// to add more workout classes to member
             public void AddWorkoutClass ()
             {
                 Console.WriteLine("Enter class name: ");
@@ -81,12 +81,12 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
                 Console.WriteLine("Enter Trainer Name: ");
                 string trainerName = Console.ReadLine();
 
-                if (string.IsNullOrEmpty(trainerName) || string.IsNullOrWhiteSpace(classTime) || string.IsNullOrWhiteSpace(trainerName))
+                if (string.IsNullOrEmpty(trainerName) & string.IsNullOrEmpty(classTime) & string.IsNullOrEmpty(trainerName))
                 {
-                    Console.WriteLine("Invaild input vant be empty");
+                    Console.WriteLine("Invaild input cant be empty");
                     return;
                 }
-
+                /// Creates a new workout class for the mebers and adds it to there workoutClasses
                 workoutClass.Add(new WorkoutClass(className, classTime, trainerName)); // gets all info and adds class
                 Console.WriteLine("Workout class added successfully");
             }
@@ -111,9 +111,9 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
     {
         static void Main()
         {
-            GymManagement gymManagement = new GymManagement();
-            bool running = true;
-            while (running)
+            GymManagement gymManagement = new GymManagement(); // Runs GymManagement 
+      
+            while (true)  // keeps menu running until you want to exit 
             {
                 Console.WriteLine("Gym Managemnt System");
                 Console.WriteLine("1. Add a new member");
@@ -122,18 +122,27 @@ namespace COMP003A.GymManagementSystem.FinalProjectPart2
                 Console.WriteLine("4. Delete workout class");
                 Console.WriteLine("5. Exit gym management");
                 Console.WriteLine("Pick a number 1-5");
-                string choice = Console.ReadLine();
+                string choice = Console.ReadLine();  // Reads teh numebr you input
 
-                switch (choice)
+                switch (choice)  // Handles what number you input
                 {
                     case "1":
-                        gymManagement.AddNewMember();
+                        gymManagement.AddNewMember(); // calls AddMember 
                         break;
                     case "2":
-                        gymManagement.ViewWorkoutClass();
+                        gymManagement.ViewWorkoutClass(); // calls ViewWorkoutClass
                         break;
                     case "3":
-                        gymManagement.AddWorkoutClass();
+                        gymManagement.AddWorkoutClass(); // calls AddWorkoutClass
+                        break;
+                    case "4":
+                        gymManagement.DeleteWorkoutClass(); // calls DeleteWorkoutClass
+                        break;
+                    case "5":
+                        Console.WriteLine("Exiting Gym management");
+                        return; //exit program
+                        default:
+                        Console.WriteLine("Invaild input pick i number 1-5");
                         break;
                 }
 
