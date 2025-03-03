@@ -1,0 +1,23 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace COMP003A.GymManagementSystem.FinalProjectPart2
+{
+    /// Class saves workout class info like the name, time, and trainer 
+    class WorkoutClass
+    {
+        public string ClassName { get; set; }    // Name of workout class
+        public string ClassTime { get; set; }    // The time of the workout class
+        public string TrainerName { get; set; }  // The name of the trainer for the class
+        /// constructor to ask for info of workoutclass
+        public WorkoutClass(string className, string classTime, string trainerName)
+        {
+            ClassName = className;
+            ClassTime = classTime;
+            TrainerName = trainerName;
+        }
+    }
+}
