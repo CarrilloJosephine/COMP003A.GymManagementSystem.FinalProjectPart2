@@ -1,1 +1,25 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace COMP003A.GymManagementSystem.FinalProjectPart2
+{
+    /// Class saves meber info like full name and id number 
+    class Member
+    {
+        public string FullName { get; set; }  // full Name of new gym member
+        public string ID { get; set; }       // unique id for each new member 
+        public List<WorkoutClass> WorkoutClasses { get; set; } // list of workout classes the members are in 
+
+        /// Constructor  
+        public Member(string name, string id)
+        {
+            FullName = name;
+            ID = id;
+            WorkoutClasses = new List<WorkoutClass>();     // start workoutclass list
+        }
+    }
+}
 
